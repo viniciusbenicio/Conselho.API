@@ -14,13 +14,15 @@ namespace Conselho.API.Controllers
         {
             _usuarioRepository = usuarioRepository;
         }
-        [Route("v1/GetByIdAsync")]
-        [HttpGet]
-        public async Task<Usuario> GetByIdAsync(int id)
-        {
-            var usuario = await _usuarioRepository.GetUsuarioAsync(id);
 
-            return usuario;
+        [Route("v1/GetUsuarios")]
+        [HttpGet]
+        public IActionResult GetUsuarios()
+        {
+            var usuarios = _usuarioRepository.GetUsuarios();
+
+            return Ok(usuarios);
         }
+
     }
 }

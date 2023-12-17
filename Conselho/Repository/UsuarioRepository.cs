@@ -13,9 +13,10 @@ namespace Conselho.API.Repository
         {
             _context = context;
         }
-        public Task<Usuario> GetUsuarioAsync(int id)
+        public IEnumerable<Usuario> GetUsuarios()
         {
-            return _context.Usuarios.Where(x => x.Id == id).FirstOrDefaultAsync();
+            return _context.Usuarios.ToList();
         }
+      
     }
 }

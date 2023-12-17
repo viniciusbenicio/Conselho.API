@@ -1,9 +1,10 @@
 ﻿using Conselho.API.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Conselho.API.Repository.Interfaces
 {
     public interface IUsuarioRepository
     {
-        Task<Usuario> GetUsuarioAsync(int id);
+        IEnumerable<Usuario> GetUsuarios();
     }
 }
