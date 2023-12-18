@@ -28,17 +28,24 @@ namespace Conselho.API.Repository
         public void Add(T entity)
         {
             _dbSet.Add(entity);
+            SaveChanges();
         }
 
         public void Update(T entity)
         {
             _context.Entry(entity).State = EntityState.Modified;
+            SaveChanges();
         }
 
         public void Delete(T entity)
         {
             _dbSet.Remove(entity);
+            SaveChanges();
         }
 
+        public void SaveChanges()
+        {
+            _context.SaveChanges();
+        }
     }
 }

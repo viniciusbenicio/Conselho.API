@@ -27,14 +27,21 @@ namespace Conselho.API.Controllers
         public IActionResult GetUsuariosById(int Id)
         {
             var usuarios = _usuarioRepository.GetById(Id);
+            if (usuarios == null)
+                return NotFound();
 
             return Ok(usuarios);
         }
 
         [HttpPost("v1/usuarios")]
-        public IActionResult PostUsuario([FromBody] Usuario usuarios)
+        public IActionResult PostUsuario(string nome)
         {
-           _usuarioRepository.Add(usuarios);
+            var user = new Usuario(nome);
+
+            if (String.IsNullOrEmpty(nome))
+                return NotFound();
+
+            _usuarioRepository.Add(user);
 
             return Ok();
         }
@@ -57,6 +64,9 @@ namespace Conselho.API.Controllers
         public IActionResult DeleteUsuario(int Id)
         {
             var user = _usuarioRepository.GetById(Id);
+
+            if (user == null)
+                return NotFound();
 
             _usuarioRepository.Delete(user);
 
