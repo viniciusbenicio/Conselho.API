@@ -1,5 +1,4 @@
-﻿using Conselho.API.Data;
-using Conselho.API.Models;
+﻿using Conselho.API.Models;
 using Conselho.API.Repository.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,6 +19,7 @@ namespace Conselho.API.Controllers
         {
             var usuarios = _usuarioRepository.GetAll();
 
+
             return Ok(usuarios);
         }
 
@@ -34,11 +34,15 @@ namespace Conselho.API.Controllers
         }
 
         [HttpPost("v1/usuarios")]
-        public IActionResult PostUsuario(string nome)
+        public IActionResult PostUsuario(string Nome)
         {
-            var user = new Usuario(nome);
+            var user = new Usuario(Nome);
+            var email = new Email()
+            {
+                Endereco = "vinicius"
+            };
 
-            if (String.IsNullOrEmpty(nome))
+            if (String.IsNullOrEmpty(Nome))
                 return NotFound();
 
             _usuarioRepository.Add(user);

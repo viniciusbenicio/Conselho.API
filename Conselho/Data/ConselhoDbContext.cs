@@ -8,10 +8,12 @@ namespace Conselho.API.Data
         public ConselhoDbContext(DbContextOptions<ConselhoDbContext> options) : base(options) { }
 
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Email> Emails { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //builder.ApplyConfiguration(new CategoryMap());
+            builder.ApplyConfiguration(new UsuarioMap());
+            builder.ApplyConfiguration(new EmailMap());
         }
     }
 }
