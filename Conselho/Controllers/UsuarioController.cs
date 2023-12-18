@@ -9,17 +9,17 @@ namespace Conselho.API.Controllers
     [Route("[controller]")]
     public class UsuarioController : ControllerBase
     {
-        private readonly IUsuarioRepository _usuarioRepository;
-        public UsuarioController(IUsuarioRepository usuarioRepository)
+        private readonly IRepository<Usuario> _usuarioRepository;
+
+        public UsuarioController(IRepository<Usuario> usuarioRepository)
         {
             _usuarioRepository = usuarioRepository;
         }
 
-        [Route("v1/GetUsuarios")]
-        [HttpGet]
+        [HttpGet("v1/usuarios")]
         public IActionResult GetUsuarios()
         {
-            var usuarios = _usuarioRepository.GetUsuarios();
+            var usuarios = _usuarioRepository.GetAll();
 
             return Ok(usuarios);
         }

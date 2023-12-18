@@ -1,4 +1,5 @@
-﻿using Conselho.API.Repository;
+﻿using Conselho.API.Models;
+using Conselho.API.Repository;
 using Conselho.API.Repository.Interfaces;
 using Microsoft.Data.SqlClient;
 
@@ -15,7 +16,7 @@ namespace Conselho.API.Extensions
         }
         public static void AddRepositories(this IServiceCollection services)
         {
-            services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+            services.AddTransient<IRepository<Usuario>, Repository<Usuario>>();
         }
 
         public static void AddServices(this IServiceCollection services)
