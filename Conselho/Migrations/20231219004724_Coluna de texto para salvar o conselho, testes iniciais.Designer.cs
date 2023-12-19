@@ -3,6 +3,7 @@ using Conselho.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Conselho.API.Migrations
 {
     [DbContext(typeof(ConselhoDbContext))]
-    partial class ConselhoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231219004724_Coluna de texto para salvar o conselho, testes iniciais")]
+    partial class Colunadetextoparasalvaroconselhotestesiniciais
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

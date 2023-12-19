@@ -39,10 +39,12 @@ namespace Conselho.API.Controllers
         [HttpPost("v1/usuarios")]
         public IActionResult PostUsuario(string Nome)
         {
-            var user = new Usuario(Nome);
-            var email = new Email()
+           var result =  _adviceSlipServices.GetAdviceAsync().Result;
+
+            var user = new Usuario(Nome)
             {
-                Endereco = "vinicius"
+                Nome = Nome,
+                Conselho = result.Slip.Advice
             };
 
             if (String.IsNullOrEmpty(Nome))
@@ -50,7 +52,7 @@ namespace Conselho.API.Controllers
 
             _usuarioRepository.Add(user);
 
-            return Ok();
+            return Ok(user);
         }
 
         [HttpPut("v1/usuarios/{Id}")]

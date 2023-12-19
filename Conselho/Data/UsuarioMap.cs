@@ -21,6 +21,11 @@ namespace Conselho.API.Data
                    .HasColumnName("Nome")
                    .HasColumnType("NVARCHAR")
                    .HasMaxLength(64);
+
+            builder.Property(x => x.Conselho)
+                   .HasColumnName("Conselho")
+                   .HasColumnType("NVARCHAR")
+                   .HasMaxLength(255);
         }
     }
 }
