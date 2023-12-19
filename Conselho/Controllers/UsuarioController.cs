@@ -1,5 +1,6 @@
 ﻿using Conselho.API.Models;
 using Conselho.API.Repository.Interfaces;
+using Conselho.API.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Conselho.API.Controllers
@@ -8,10 +9,12 @@ namespace Conselho.API.Controllers
     public class UsuarioController : ControllerBase
     {
         private readonly IRepository<Usuario> _usuarioRepository;
+        private readonly IAdviceSlipServices _adviceSlipServices;
 
-        public UsuarioController(IRepository<Usuario> usuarioRepository)
+        public UsuarioController(IRepository<Usuario> usuarioRepository, IAdviceSlipServices adviceSlipServices)
         {
             _usuarioRepository = usuarioRepository;
+            _adviceSlipServices = adviceSlipServices;
         }
 
         [HttpGet("v1/usuarios")]

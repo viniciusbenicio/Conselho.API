@@ -1,6 +1,8 @@
 ﻿using Conselho.API.Models;
 using Conselho.API.Repository;
 using Conselho.API.Repository.Interfaces;
+using Conselho.API.Services;
+using Conselho.API.Services.Interfaces;
 using Microsoft.Data.SqlClient;
 
 namespace Conselho.API.Extensions
@@ -21,7 +23,7 @@ namespace Conselho.API.Extensions
 
         public static void AddServices(this IServiceCollection services)
         {
-            //services.AddTransient<, >();
+            services.AddTransient<IAdviceSlipServices, AdviceSlipServices>();
         }
     }
 }
