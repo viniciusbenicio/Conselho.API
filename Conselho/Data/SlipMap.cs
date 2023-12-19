@@ -23,6 +23,11 @@ namespace Conselho.API.Data
                    .HasColumnName("Descricao")
                    .HasColumnType("NVARCHAR")
                    .HasMaxLength(255);
+
+            builder.HasOne(x => x.Usuario)
+                  .WithMany(x => x.Slips)
+                  .HasConstraintName("FK_Spli_Results")
+                  .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

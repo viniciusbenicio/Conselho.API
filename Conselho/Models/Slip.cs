@@ -10,6 +10,8 @@ namespace Conselho.API.Models
 
         [JsonProperty("advice")]
         public string Conselho { get; set; }
+
+        public Usuario Usuario { get; set; }
     }
 
     public class AdviceResponse
