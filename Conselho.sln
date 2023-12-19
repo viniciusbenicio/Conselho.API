@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34316.72
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conselho.API", "Conselho\Conselho.API.csproj", "{446B1997-B371-49A1-BBD9-0334FE38427F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conselho.API.Tests", "Conselho.API.Tests\Conselho.API.Tests.csproj", "{735D7B10-B79B-4B1B-967F-309E51BD1D73}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{446B1997-B371-49A1-BBD9-0334FE38427F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{446B1997-B371-49A1-BBD9-0334FE38427F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{446B1997-B371-49A1-BBD9-0334FE38427F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{735D7B10-B79B-4B1B-967F-309E51BD1D73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{735D7B10-B79B-4B1B-967F-309E51BD1D73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{735D7B10-B79B-4B1B-967F-309E51BD1D73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{735D7B10-B79B-4B1B-967F-309E51BD1D73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
