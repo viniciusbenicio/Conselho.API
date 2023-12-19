@@ -9,11 +9,13 @@ namespace Conselho.API.Data
 
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Email> Emails { get; set; }
+        public DbSet<Slip> Slips { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new UsuarioMap());
             builder.ApplyConfiguration(new EmailMap());
+            builder.ApplyConfiguration(new SlipMap());
         }
     }
 }

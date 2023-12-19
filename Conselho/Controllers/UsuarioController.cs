@@ -44,7 +44,7 @@ namespace Conselho.API.Controllers
             var user = new Usuario(Nome)
             {
                 Nome = Nome,
-                Conselho = result.Slip.Advice
+                //Conselho = result.Slip.Advice
             };
 
             if (String.IsNullOrEmpty(Nome))

@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Conselho.API.Data
 {
-    public class UsuarioMap : IEntityTypeConfiguration<Usuario>
+    public class SlipMap : IEntityTypeConfiguration<Slip>
     {
-        public void Configure(EntityTypeBuilder<Usuario> builder)
+        public void Configure(EntityTypeBuilder<Slip> builder)
         {
-            builder.ToTable("Usuario");
+            builder.ToTable("Slip");
 
             builder.HasKey(x => x.Id);
 
@@ -16,12 +16,13 @@ namespace Conselho.API.Data
                    .ValueGeneratedOnAdd()
                    .UseIdentityColumn();
 
-            builder.Property(x => x.Nome)
+            builder.Property(x => x.IdSlip);
+
+            builder.Property(x => x.Conselho)
                    .IsRequired()
-                   .HasColumnName("Nome")
+                   .HasColumnName("Descricao")
                    .HasColumnType("NVARCHAR")
-                   .HasMaxLength(64);
-          
+                   .HasMaxLength(255);
         }
     }
 }

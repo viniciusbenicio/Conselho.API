@@ -9,7 +9,6 @@
 
         public int Id { get; set; }
         public string Nome { get; set; }
-        public string Conselho { get; set; }
         public List<Email> Emails { get; set; }
 
     }
