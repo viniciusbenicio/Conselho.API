@@ -19,6 +19,7 @@ namespace Conselho.API.Extensions
         public static void AddRepositories(this IServiceCollection services)
         {
             services.AddTransient<IRepository<Usuario>, Repository<Usuario>>();
+            services.AddTransient<IRepository<Slip>, Repository<Slip>>();
         }
 
         public static void AddServices(this IServiceCollection services)

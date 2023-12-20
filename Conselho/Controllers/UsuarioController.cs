@@ -9,12 +9,14 @@ namespace Conselho.API.Controllers
     public class UsuarioController : ControllerBase
     {
         private readonly IRepository<Usuario> _usuarioRepository;
+        private readonly IRepository<Slip> _adviceSlipRepository;
         private readonly IAdviceSlipServices _adviceSlipServices;
 
-        public UsuarioController(IRepository<Usuario> usuarioRepository, IAdviceSlipServices adviceSlipServices)
+        public UsuarioController(IRepository<Usuario> usuarioRepository, IAdviceSlipServices adviceSlipServices, IRepository<Slip> adviceSlipRepository)
         {
             _usuarioRepository = usuarioRepository;
             _adviceSlipServices = adviceSlipServices;
+            _adviceSlipRepository = adviceSlipRepository;
         }
 
         [HttpGet("v1/usuarios")]
@@ -47,8 +49,19 @@ namespace Conselho.API.Controllers
                 //Conselho = result.Slip.Advice
             };
 
+            var slip = new Slip()
+            {
+                IdSlip = result.Conselho.IdSlip,
+                Usuario = user,
+                Conselho = result.Conselho.Conselho
+            };
+
+            user.Id = 0;
+
             if (String.IsNullOrEmpty(Nome))
                 return NotFound();
+
+            _adviceSlipRepository.Add(slip);
 
             _usuarioRepository.Add(user);
 
