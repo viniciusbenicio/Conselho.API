@@ -24,6 +24,9 @@ namespace Conselho.API.Controllers
         {
             var usuarios = _usuarioRepository.GetAll();
 
+            if(!usuarios.Any())
+                return NoContent();
+
 
             return Ok(usuarios);
         }
@@ -33,7 +36,7 @@ namespace Conselho.API.Controllers
         {
             var usuarios = _usuarioRepository.GetById(Id);
             if (usuarios == null)
-                return NotFound();
+                return NoContent();
 
             return Ok(usuarios);
         }
@@ -41,12 +44,12 @@ namespace Conselho.API.Controllers
         [HttpPost("v1/usuarios")]
         public IActionResult PostUsuario(string Nome)
         {
-           var result =  _adviceSlipServices.GetAdviceAsync().Result;
+
+            var result = _adviceSlipServices.GetAdviceAsync().Result;
 
             var user = new Usuario(Nome)
             {
                 Nome = Nome,
-                //Conselho = result.Slip.Advice
             };
 
             var slip = new Slip()
@@ -56,16 +59,16 @@ namespace Conselho.API.Controllers
                 Conselho = result.Conselho.Conselho
             };
 
-            user.Id = 0;
 
             if (String.IsNullOrEmpty(Nome))
                 return NotFound();
 
-            _adviceSlipRepository.Add(slip);
-
             _usuarioRepository.Add(user);
 
-            return Ok(user);
+            _adviceSlipRepository.Add(slip);
+
+
+            return Ok($"Usuario registrado com sucesso: {user.Nome} ");
         }
 
         [HttpPut("v1/usuarios/{Id}")]
