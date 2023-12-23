@@ -20,6 +20,7 @@ namespace Conselho.API.Extensions
         {
             services.AddTransient<IRepository<Usuario>, Repository<Usuario>>();
             services.AddTransient<IRepository<Slip>, Repository<Slip>>();
+            services.AddTransient<IUsuarioConselhoRepository, UsuarioConselhoRepository>();
         }
 
         public static void AddServices(this IServiceCollection services)
