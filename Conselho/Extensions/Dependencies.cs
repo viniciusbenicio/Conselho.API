@@ -26,6 +26,7 @@ namespace Conselho.API.Extensions
         public static void AddServices(this IServiceCollection services)
         {
             services.AddTransient<IAdviceSlipServices, AdviceSlipServices>();
+            services.AddTransient<IEmailServices, EmailServices>();
         }
     }
 }

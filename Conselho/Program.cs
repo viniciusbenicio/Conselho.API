@@ -1,3 +1,4 @@
+using Conselho.API;
 using Conselho.API.Data;
 using Conselho.API.Extensions;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,10 @@ builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =
 
 
 var app = builder.Build();
+
+var smtp = new Configuracoes.SmtpConfiguracao();
+app.Configuration.GetSection("Smtp").Bind(smtp);
+Configuracoes.Smtp = smtp;
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
