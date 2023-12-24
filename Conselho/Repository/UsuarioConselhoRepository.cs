@@ -16,7 +16,7 @@ namespace Conselho.API.Repository
 
         public Usuario GetByIdUsuarioConselho(int Id)
         {
-            return _context.Usuarios.Include(u => u.Slips).Where(x => x.Id == Id).FirstOrDefault();
+            return _context.Usuarios.Include(u => u.Slips).Include(e => e.Emails).Where(x => x.Id == Id).FirstOrDefault();
 
         }
 

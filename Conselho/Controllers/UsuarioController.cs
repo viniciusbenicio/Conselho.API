@@ -12,13 +12,17 @@ namespace Conselho.API.Controllers
     {
         private readonly IRepository<Usuario> _usuarioRepository;
         private readonly IRepository<Slip> _adviceSlipRepository;
+        private readonly IRepository<Email> _emailRepository;
         private readonly IAdviceSlipServices _adviceSlipServices;
+        private readonly IEmailServices _emailServices;
 
-        public UsuarioController(IRepository<Usuario> usuarioRepository, IAdviceSlipServices adviceSlipServices, IRepository<Slip> adviceSlipRepository)
+        public UsuarioController(IRepository<Usuario> usuarioRepository, IAdviceSlipServices adviceSlipServices, IRepository<Slip> adviceSlipRepository, IEmailServices emailServices, IRepository<Email> emailRepository)
         {
             _usuarioRepository = usuarioRepository;
             _adviceSlipServices = adviceSlipServices;
             _adviceSlipRepository = adviceSlipRepository;
+            _emailServices = emailServices;
+            _emailRepository = emailRepository;
         }
 
         [HttpGet("v1/usuarios")]
@@ -26,7 +30,7 @@ namespace Conselho.API.Controllers
         {
             var usuarios = _usuarioRepository.GetAll();
 
-            if(!usuarios.Any())
+            if (!usuarios.Any())
                 return NoContent();
 
 
@@ -44,7 +48,7 @@ namespace Conselho.API.Controllers
         }
 
         [HttpPost("v1/usuarios")]
-        public IActionResult PostUsuario(string Nome)
+        public IActionResult PostUsuario(string Nome, string email)
         {
 
             var result = _adviceSlipServices.GetAdviceAsync().Result;
@@ -61,13 +65,21 @@ namespace Conselho.API.Controllers
                 Conselho = result.Conselho.Conselho
             };
 
+            var mail = new Email()
+            {
+                Endereco = email,
+                Usuario = user,
+            };
+
 
             if (String.IsNullOrEmpty(Nome))
                 return NotFound();
 
             _usuarioRepository.Add(user);
-
             _adviceSlipRepository.Add(slip);
+            _emailRepository.Add(mail);
+
+            _emailServices.Enviar("API Conselho ", mail.Endereco, "Conselho", slip.Conselho, user.Nome, "vinicius.benicio97@gmail.com");
 
 
             return Ok($"Usuario registrado com sucesso: {user.Nome} ");
