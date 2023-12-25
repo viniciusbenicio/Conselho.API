@@ -15,14 +15,16 @@ namespace Conselho.API.Controllers
         private readonly IRepository<Email> _emailRepository;
         private readonly IAdviceSlipServices _adviceSlipServices;
         private readonly IEmailServices _emailServices;
+        private readonly ITraducaoServices _traducaoServices;
 
-        public UsuarioController(IRepository<Usuario> usuarioRepository, IAdviceSlipServices adviceSlipServices, IRepository<Slip> adviceSlipRepository, IEmailServices emailServices, IRepository<Email> emailRepository)
+        public UsuarioController(IRepository<Usuario> usuarioRepository, IAdviceSlipServices adviceSlipServices, IRepository<Slip> adviceSlipRepository, IEmailServices emailServices, IRepository<Email> emailRepository, ITraducaoServices traducaoServices)
         {
             _usuarioRepository = usuarioRepository;
             _adviceSlipServices = adviceSlipServices;
             _adviceSlipRepository = adviceSlipRepository;
             _emailServices = emailServices;
             _emailRepository = emailRepository;
+            _traducaoServices = traducaoServices;
         }
 
         [HttpGet("v1/usuarios")]
@@ -50,7 +52,6 @@ namespace Conselho.API.Controllers
         [HttpPost("v1/usuarios")]
         public IActionResult PostUsuario(string Nome, string email)
         {
-
             var result = _adviceSlipServices.GetAdviceAsync().Result;
 
             var user = new Usuario(Nome)
@@ -58,11 +59,13 @@ namespace Conselho.API.Controllers
                 Nome = Nome,
             };
 
+            var traducao = _traducaoServices.RealizarTraducao(result.Conselho.Conselho).Result;
+
             var slip = new Slip()
             {
                 IdSlip = result.Conselho.IdSlip,
                 Usuario = user,
-                Conselho = result.Conselho.Conselho
+                Conselho = traducao
             };
 
             var mail = new Email()
@@ -82,7 +85,7 @@ namespace Conselho.API.Controllers
             _emailServices.Enviar("API Conselho ", mail.Endereco, "Conselho", slip.Conselho, user.Nome, "vinicius.benicio97@gmail.com");
 
 
-            return Ok($"Usuario registrado com sucesso: {user.Nome} ");
+            return Ok($"Usuario registrado com sucesso: {user.Nome} E o Conselho registrado para você: {slip.Conselho} ");
         }
 
         [HttpPut("v1/usuarios/{Id}")]

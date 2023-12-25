@@ -28,6 +28,7 @@ namespace Conselho.API.Extensions
         {
             services.AddTransient<IAdviceSlipServices, AdviceSlipServices>();
             services.AddTransient<IEmailServices, EmailServices>();
+            services.AddTransient<ITraducaoServices, TraducaoServices>();
         }
     }
 }
