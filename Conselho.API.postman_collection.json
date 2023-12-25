@@ -1,0 +1,161 @@
+{
+	"info": {
+		"_postman_id": "c88e29aa-74b4-4ef0-b7ea-1a182c35f73f",
+		"name": "Conselho.API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18529058"
+	},
+	"item": [
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "Retornar todos os Usuarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7210/v1/usuarios",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7210",
+							"path": [
+								"v1",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retornar Usuario pelo ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7210/v1/usuarios/22",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7210",
+							"path": [
+								"v1",
+								"usuarios",
+								"22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Usuário",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7210/v1/usuarios?nome=vinicius&email=vinicius.benicio97@gmail.com",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7210",
+							"path": [
+								"v1",
+								"usuarios"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": "vinicius"
+								},
+								{
+									"key": "email",
+									"value": "vinicius.benicio97@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Usuário",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7210/v1/usuarios/22",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7210",
+							"path": [
+								"v1",
+								"usuarios",
+								"22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Usuário",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7210/v1/usuarios/22",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7210",
+							"path": [
+								"v1",
+								"usuarios",
+								"22"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Conselhos do Usuário",
+			"item": [
+				{
+					"name": "Retorna o Usuário e seus conselhos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7210/v1/conselhos/22",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7210",
+							"path": [
+								"v1",
+								"conselhos",
+								"22"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
