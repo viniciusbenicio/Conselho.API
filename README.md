@@ -40,7 +40,7 @@ Este projeto tem como objetivo aplicar técnicas e consolidar aprendizados adqui
 
 ## 📝 Como Usar
 
-Realize o download do arquivo e abra-o utilizando o Postman para realizar as requisições.
+Realize o download do arquivo [Conselho.API.postman_collection](https://github.com/viniciusbenicio/Conselho.API/blob/main/Conselho.API.postman_collection.json) e abra-o utilizando o Postman para realizar as requisições.
 
 ## 🌐 Exemplos
 
