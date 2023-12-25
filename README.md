@@ -1,7 +1,6 @@
 # Conselho API
 
-O **Conselho API** é uma Web API desenvolvida em C# utilizando .NET 6, com foco em consumir uma API que gera um conselho para vida aleatorio. Esta API permite que você crie um Usuário informando Nome e E-mail. que será disparado para o seu e-mail o conselho.
-
+O **Conselho API** é uma Web API desenvolvida em C# utilizando .NET 6, com o propósito de consumir APIs externas. Ela gera conselhos de vida aleatórios através da [Advice Slip API](https://api.adviceslip.com/) e realiza a tradução destes conselhos do inglês para o português utilizando a [MyMemory Translation API](https://mymemory.translated.net/doc/spec.php). Os conselhos traduzidos são enviados por e-mail utilizando o serviço [SendGrid](https://sendgrid.com/). Esta API permite que você crie um usuário informando Nome e E-mail.
 
 ## Índice
 
@@ -15,13 +14,14 @@ O **Conselho API** é uma Web API desenvolvida em C# utilizando .NET 6, com foco
 
 ## 📚 Visão Geral
 
-O Conselho API possibilita a geração de um conselho consumindo um API de terceiros. **É importante descatar que os conselhos gerados não são e deverão levar totalmente a sério, podem ter conselhos aleatorios que não faça sentido para você**. 
+O Conselho API possibilita a geração de conselhos consumindo duas APIs de terceiros, a [Advice Slip API](https://api.adviceslip.com/) e a [MyMemory Translation API](https://mymemory.translated.net/doc/spec.php). Os conselhos traduzidos para o português são enviados automaticamente por e-mail utilizando o serviço de envio de e-mails [SendGrid](https://sendgrid.com/). **É importante destacar que os conselhos gerados não devem ser levados totalmente a sério, pois podem ser aleatórios e não fazer sentido para todos os usuários.**
 
 ## 🚀 Motivação
 
 Este projeto tem como objetivo aplicar técnicas e consolidar aprendizados adquiridos em diversos cursos na área de programação, especialmente em C#/.NET.
 
 ## ⚙️ Construído Com
+
 - .NET 6
 - SQL Server
 - Swagger
@@ -29,21 +29,25 @@ Este projeto tem como objetivo aplicar técnicas e consolidar aprendizados adqui
 - AspNetCore
 - Newtonsoft.Json
 - RestSharp
+- SendGrid
 
 ## 🔧 Recursos
 
 - **Criação de Usuário:** Crie um usuário informando nome e e-mail.
-- **Atualização de Usuário** Atualize um usuário existente.
+- **Atualização de Usuário:** Atualize um usuário existente.
 - **Consulta de Usuário:** Consulte os usuários cadastrados.
-- **Remoção de Usuários:** Exclua os usuários cadastrados
+- **Remoção de Usuários:** Exclua os usuários cadastrados.
 
 ## 📝 Como Usar
-Realize o download do arquivo  e abra-o utilizando o Postman para realizar as requisições.
+
+Realize o download do arquivo e abra-o utilizando o Postman para realizar as requisições.
 
 ## 🌐 Exemplos
-![Exemplo 1]()
-![Exemplo 2]()
-![Exemplo 3]()
+
+![Exemplo 1](link-da-imagem-1)
+![Exemplo 2](link-da-imagem-2)
+![Exemplo 3](link-da-imagem-3)
 
 ## 👨‍💻 Desenvolvedor
+
 - Vinicius Benicio de Santana: [LinkedIn](https://www.linkedin.com/in/viniciusbenicio/)
