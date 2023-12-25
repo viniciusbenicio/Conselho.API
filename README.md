@@ -33,10 +33,16 @@ Este projeto tem como objetivo aplicar técnicas e consolidar aprendizados adqui
 
 ## 🔧 Recursos
 
+### Controller de Usuários
+
 - **Criação de Usuário:** Crie um usuário informando nome e e-mail.
 - **Atualização de Usuário:** Atualize um usuário existente.
 - **Consulta de Usuário:** Consulte os usuários cadastrados.
 - **Remoção de Usuários:** Exclua os usuários cadastrados.
+
+### Controller de Conselhos
+
+- **Consulta de Usuário e Conselhos Salvos:** Consulte um usuário cadastrado e seus conselhos salvos.
 
 ## 📝 Como Usar
 
@@ -51,3 +57,9 @@ Realize o download do arquivo [Conselho.API.postman_collection](https://github.c
 ## 👨‍💻 Desenvolvedor
 
 - Vinicius Benicio de Santana: [LinkedIn](https://www.linkedin.com/in/viniciusbenicio/)
+
+---
+
+**🚧 Projeto em Construção 🚧**
+
+Este projeto está em constante evolução, e novas funcionalidades podem ser adicionadas. Fique atento às atualizações!
