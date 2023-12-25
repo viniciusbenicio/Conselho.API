@@ -1,9 +1,7 @@
 ﻿using Conselho.API.Models;
 using Conselho.API.Repository.Interfaces;
-using Conselho.API.Services;
 using Conselho.API.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System.Xml.Linq;
 
 namespace Conselho.API.Controllers
 {
