@@ -25,6 +25,10 @@ namespace Conselho.API.Controllers
             _traducaoServices = traducaoServices;
         }
 
+        /// <summary>
+        ///  Retorna todos os usuários da base de dados.
+        /// </summary>
+        /// <returns>{</returns>
         [HttpGet("v1/usuarios")]
         public IActionResult GetUsuarios()
         {
@@ -37,6 +41,11 @@ namespace Conselho.API.Controllers
             return Ok(usuarios);
         }
 
+        /// <summary>
+        /// Retorna apenas um usuário pelo ID.
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         [HttpGet("v1/usuarios/{Id}")]
         public IActionResult GetUsuariosById(int Id)
         {
@@ -47,6 +56,12 @@ namespace Conselho.API.Controllers
             return Ok(usuarios);
         }
 
+        /// <summary>
+        /// Cria um usuário no banco passando como parametro Nome e E-mail e também recebe o conselho no e-mail passado.
+        /// </summary>
+        /// <param name="Nome"></param>
+        /// <param name="email"></param>
+        /// <returns></returns>
         [HttpPost("v1/usuarios")]
         public IActionResult PostUsuario(string Nome, string email)
         {
@@ -86,6 +101,11 @@ namespace Conselho.API.Controllers
             return Ok($"Usuario registrado com sucesso: {user.Nome} E o Conselho registrado para você: {slip.Conselho} ");
         }
 
+        /// <summary>
+        /// Atualiza o usuário pelo ID que foi passado.
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         [HttpPut("v1/usuarios/{Id}")]
         public IActionResult PutUsuario(int Id)
         {
@@ -100,6 +120,11 @@ namespace Conselho.API.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Deleta um usuário do ID passado.
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         [HttpDelete("v1/usuarios/{Id}")]
         public IActionResult DeleteUsuario(int Id)
         {

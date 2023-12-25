@@ -12,6 +12,11 @@ namespace Conselho.API.Controllers
             _usuarioConselhoRepository = usuarioConselhoRepository;
         }
 
+        /// <summary>
+        /// Retorna o Usuário pelo ID passado e os seus conselhos salvos.
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         [HttpGet("v1/conselhos/{Id}")]
         public IActionResult GetUsuarioConselhoById(int Id)
         {
