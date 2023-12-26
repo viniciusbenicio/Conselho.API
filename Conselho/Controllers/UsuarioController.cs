@@ -115,20 +115,23 @@ namespace Conselho.API.Controllers
         }
 
         /// <summary>
-        /// Atualiza o usuário pelo ID que foi passado.
+        /// Atualiza o usuário nome e e-mail do usuário passando como parametro o Id do usuário.
         /// </summary>
         /// <param name="Id"></param>
+        /// <param name="model"></param>
         /// <returns></returns>
         [HttpPut("v1/usuarios/{Id}")]
-        public IActionResult PutUsuario(int Id)
+        public IActionResult PutUsuario(int Id, [FromBody] UsuarioDTO model)
         {
-            var user = _usuarioRepository.GetById(Id);
+            var usuario = _usuarioRepository.GetById(Id);
 
-            if (user == null)
+            if (usuario == null)
                 return NotFound();
 
+            usuario.Nome = model.Nome;
 
-            _usuarioRepository.Update(user);
+
+            _usuarioRepository.Update(usuario);
 
             return Ok();
         }
