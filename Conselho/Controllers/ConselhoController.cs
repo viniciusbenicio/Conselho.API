@@ -1,4 +1,8 @@
-﻿using Conselho.API.Repository.Interfaces;
+﻿using Conselho.API.Data.DTO;
+using Conselho.API.Models;
+using Conselho.API.Repository.Interfaces;
+using Conselho.API.Services;
+using Conselho.API.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Conselho.API.Controllers
@@ -7,9 +11,20 @@ namespace Conselho.API.Controllers
     public class ConselhoController : ControllerBase
     {
         private readonly IUsuarioConselhoRepository _usuarioConselhoRepository;
-        public ConselhoController(IUsuarioConselhoRepository usuarioConselhoRepository)
+        private readonly IRepository<Usuario> _usuarioRepository;
+        private readonly IRepository<Slip> _adviceSlipRepository;
+        private readonly IAdviceSlipServices _adviceSlipServices;
+        private readonly ITraducaoServices _traducaoServices;
+        private readonly IEmailServices _emailServices;
+
+        public ConselhoController(IUsuarioConselhoRepository usuarioConselhoRepository, IRepository<Usuario> usuarioRepository, IAdviceSlipServices adviceSlipServices, IRepository<Slip> adviceSlipRepository, ITraducaoServices traducaoServices, IEmailServices emailServices)
         {
             _usuarioConselhoRepository = usuarioConselhoRepository;
+            _usuarioRepository = usuarioRepository;
+            _adviceSlipServices = adviceSlipServices;
+            _adviceSlipRepository = adviceSlipRepository;
+            _traducaoServices = traducaoServices;
+            _emailServices = emailServices;
         }
 
         /// <summary>
@@ -25,6 +40,38 @@ namespace Conselho.API.Controllers
                 return NoContent();
 
             return Ok(usuario);
+        }
+
+        [HttpPost("v1/conselhos")]
+        public IActionResult PostNovoConselhoUsuario([FromBody] UsuarioDTO model)
+        {
+            var usuario = _usuarioRepository.GetAll().FirstOrDefault(x => x.Nome == model.Nome);
+
+
+            if (usuario == null)
+                return NoContent();
+
+            var novoConselho = _adviceSlipServices.GetAdviceAsync().Result;
+
+            if(novoConselho == null)
+                return NoContent();
+
+
+            var traducao = _traducaoServices.RealizarTraducao(novoConselho.Conselho.Conselho).Result;
+
+            Slip slip = new Slip()
+            {
+                IdSlip = novoConselho.Conselho.IdSlip,
+                Conselho = traducao,
+                Usuario = usuario
+            };
+
+            _adviceSlipRepository.Add(slip);
+
+            _emailServices.Enviar("API Conselho ", "vinicius.benicio97@gmail.com", "Conselho", slip.Conselho, usuario.Nome, "vinicius.benicio97@gmail.com");
+
+            return Ok(usuario);
+
         }
     }
 }
