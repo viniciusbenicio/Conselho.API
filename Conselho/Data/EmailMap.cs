@@ -25,7 +25,7 @@ namespace Conselho.API.Data
             builder.HasOne(x => x.Usuario)
                  .WithMany(x => x.Emails)
                  .HasConstraintName("FK_Emails_Usuarios")
-                 .OnDelete(DeleteBehavior.NoAction);
+                 .OnDelete(DeleteBehavior.Cascade);
      
         }
     }

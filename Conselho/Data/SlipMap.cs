@@ -27,7 +27,7 @@ namespace Conselho.API.Data
             builder.HasOne(x => x.Usuario)
                   .WithMany(x => x.Slips)
                   .HasConstraintName("FK_Spli_Results")
-                  .OnDelete(DeleteBehavior.NoAction);
+                  .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
