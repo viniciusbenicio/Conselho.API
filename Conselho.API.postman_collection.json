@@ -154,6 +154,35 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Crie um novo conselho para seu Usuário",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"vinicius\",\r\n  \"email\": \"vinicius.benicio97@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7210/v1/conselhos",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7210",
+							"path": [
+								"v1",
+								"conselhos"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
