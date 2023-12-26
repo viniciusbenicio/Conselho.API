@@ -1,10 +1,14 @@
-﻿using Conselho.API.Models;
+﻿using Conselho.API.Data.DTO;
+using Conselho.API.Models;
 using Conselho.API.Repository.Interfaces;
 using Conselho.API.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Conselho.API.Controllers
 {
+    /// <summary>
+    /// Controller de Usuario
+    /// </summary>
     [ApiController]
     public class UsuarioController : ControllerBase
     {
@@ -15,6 +19,15 @@ namespace Conselho.API.Controllers
         private readonly IEmailServices _emailServices;
         private readonly ITraducaoServices _traducaoServices;
 
+        /// <summary>
+        /// Construtor
+        /// </summary>
+        /// <param name="usuarioRepository"></param>
+        /// <param name="adviceSlipServices"></param>
+        /// <param name="adviceSlipRepository"></param>
+        /// <param name="emailServices"></param>
+        /// <param name="emailRepository"></param>
+        /// <param name="traducaoServices"></param>
         public UsuarioController(IRepository<Usuario> usuarioRepository, IAdviceSlipServices adviceSlipServices, IRepository<Slip> adviceSlipRepository, IEmailServices emailServices, IRepository<Email> emailRepository, ITraducaoServices traducaoServices)
         {
             _usuarioRepository = usuarioRepository;
@@ -63,42 +76,42 @@ namespace Conselho.API.Controllers
         /// <param name="email"></param>
         /// <returns></returns>
         [HttpPost("v1/usuarios")]
-        public IActionResult PostUsuario(string Nome, string email)
+        public IActionResult PostUsuario([FromBody] UsuarioDTO model)
         {
-            var result = _adviceSlipServices.GetAdviceAsync().Result;
+            var retorno = _adviceSlipServices.GetAdviceAsync().Result;
 
-            var user = new Usuario(Nome)
+            var usuario = new Usuario(model.Nome)
             {
-                Nome = Nome,
+                Nome = model.Nome,
             };
 
-            var traducao = _traducaoServices.RealizarTraducao(result.Conselho.Conselho).Result;
+            var conselhoTraduzido = _traducaoServices.RealizarTraducao(retorno.Conselho.Conselho).Result;
 
-            var slip = new Slip()
+            var conselho = new Slip()
             {
-                IdSlip = result.Conselho.IdSlip,
-                Usuario = user,
-                Conselho = traducao
+                IdSlip = retorno.Conselho.IdSlip,
+                Usuario = usuario,
+                Conselho = conselhoTraduzido
             };
 
-            var mail = new Email()
+            var email = new Email()
             {
-                Endereco = email,
-                Usuario = user,
+                Endereco = model.Email,
+                Usuario = usuario,
             };
 
 
-            if (String.IsNullOrEmpty(Nome))
+            if (String.IsNullOrEmpty(model.Nome))
                 return NotFound();
 
-            _usuarioRepository.Add(user);
-            _adviceSlipRepository.Add(slip);
-            _emailRepository.Add(mail);
+            _usuarioRepository.Add(usuario);
+            _adviceSlipRepository.Add(conselho);
+            _emailRepository.Add(email);
 
-            _emailServices.Enviar("API Conselho ", mail.Endereco, "Conselho", slip.Conselho, user.Nome, "vinicius.benicio97@gmail.com");
+            _emailServices.Enviar("API Conselho ", email.Endereco, "Conselho", conselhoTraduzido, usuario.Nome, "vinicius.benicio97@gmail.com");
 
 
-            return Ok($"Usuario registrado com sucesso: {user.Nome} E o Conselho registrado para você: {slip.Conselho} ");
+            return Ok($"Usuario registrado com sucesso: {usuario.Nome} E o Conselho registrado para você: {conselho.Conselho} ");
         }
 
         /// <summary>

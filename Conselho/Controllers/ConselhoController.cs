@@ -1,12 +1,14 @@
 ﻿using Conselho.API.Data.DTO;
 using Conselho.API.Models;
 using Conselho.API.Repository.Interfaces;
-using Conselho.API.Services;
 using Conselho.API.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Conselho.API.Controllers
 {
+    /// <summary>
+    /// Controller de Conselhos
+    /// </summary>
     [ApiController]
     public class ConselhoController : ControllerBase
     {
@@ -17,6 +19,15 @@ namespace Conselho.API.Controllers
         private readonly ITraducaoServices _traducaoServices;
         private readonly IEmailServices _emailServices;
 
+        /// <summary>
+        /// Construtor
+        /// </summary>
+        /// <param name="usuarioConselhoRepository"></param>
+        /// <param name="usuarioRepository"></param>
+        /// <param name="adviceSlipServices"></param>
+        /// <param name="adviceSlipRepository"></param>
+        /// <param name="traducaoServices"></param>
+        /// <param name="emailServices"></param>
         public ConselhoController(IUsuarioConselhoRepository usuarioConselhoRepository, IRepository<Usuario> usuarioRepository, IAdviceSlipServices adviceSlipServices, IRepository<Slip> adviceSlipRepository, ITraducaoServices traducaoServices, IEmailServices emailServices)
         {
             _usuarioConselhoRepository = usuarioConselhoRepository;
@@ -42,6 +53,11 @@ namespace Conselho.API.Controllers
             return Ok(usuario);
         }
 
+        /// <summary>
+        /// Irá criar um novo conselho para o usuário que será passado no body e será disparado para o e-mail informado.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost("v1/conselhos")]
         public IActionResult PostNovoConselhoUsuario([FromBody] UsuarioDTO model)
         {
